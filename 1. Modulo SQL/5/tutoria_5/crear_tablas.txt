@@ -1,0 +1,179 @@
+
+
+
+-- REPASO HAVING - WHERE
+
+
+
+-- encontrar los departamentos con un promedio de salario superior a cierto valor 50000
+SELECT department_id, AVG(salary) AS avg_salary
+FROM employees
+GROUP BY department_id
+HAVING AVG(salary) > 50000;
+
+
+
+-- Encuentra una lista de todos los empleados que tienen un salario superior a $5000 y que fueron contratados después del 1 de enero de 1995
+
+SELECT * FROM employees WHERE salary > 5000 AND hire_date > '1995-01-01';
+
+
+-- REPASO distinct - group by
+--  busca empleados únicos que tengan al menos un dependiente registrado
+-- y muestra su información junto con el recuento de dependientes que tienen.
+
+SELECT DISTINCT e.employee_id, e.first_name, e.last_name, (
+    SELECT COUNT(DISTINCT d.dependent_id) 
+    FROM dependents d 
+    WHERE d.employee_id = e.employee_id
+) AS num_dependents
+FROM employees e
+WHERE EXISTS (
+    SELECT 1
+    FROM dependents d
+    WHERE d.employee_id = e.employee_id
+)
+ORDER BY e.employee_id;
+
+
+-- con join
+
+
+SELECT DISTINCT e.employee_id, e.first_name, e.last_name, COUNT(DISTINCT d.dependent_id) AS num_dependents
+FROM employees e
+LEFT JOIN dependents d ON e.employee_id = d.employee_id
+WHERE d.dependent_id IS NOT NULL
+GROUP BY e.employee_id, e.first_name, e.last_name
+ORDER BY e.employee_id;
+
+
+
+
+--1.
+--- JOINS-----
+---------------
+
+
+-- inner join
+SELECT * FROM departments
+INNER JOIN locations ON departments.location_id  = locations.location_id;
+
+-- equivalente a 
+SELECT * FROM departments, locations
+where departments.location_id  = locations.location_id;
+
+-- se puede ordenar y limitar los resultados agregando cláusulas al final de la instrucción
+-- ordenar por el string locations.state_province ¿SE PUEDE?
+SELECT * FROM departments INNER JOIN locations on departments.location_id = locations.location_id ORDER BY locations.state_province  LIMIT(10);
+
+
+-- full join
+--  realizar un seguimiento de los empleados y los departamentos incluso cuando no hay coincidencias entre ellos.
+
+SELECT *
+FROM employees
+FULL JOIN departments ON employees.department_id = departments.department_id;
+
+-- En resumen, este FULL JOIN mostrará todos los empleados y todos los departamentos,
+-- combinando la información cuando existan departamentos asociados a empleados y viceversa, y mostrando NULL donde no haya coincidencias entre las tablas.
+
+
+-- left join
+un LEFT JOIN une dos tablas y devuelve todos los registros de la tabla izquierda (en este caso, la tabla de employees), junto con los registros coincidentes 
+de la tabla derecha (en este caso, la tabla departments). Si no hay coincidencias, las columnas de la tabla derecha tendrán valores NULL.
+
+
+
+SELECT *
+FROM employees
+LEFT JOIN departments ON employees.department_id = departments.department_id;
+
+-- Lo que hace esta consulta es devolver todos los registros de la tabla employees, sin importar si tienen coincidencias en la tabla departments. Además, 
+-- incluirá los registros de la tabla  departments que 
+-- coincidan con los valores de department_id en la tabla employees. 
+-- Si un empleado no está asociado con ningún departamento, las columnas de la tabla departments mostrarán valores NULL en esa fila
+
+
+
+
+-- 2. CRUZAR TABLAS
+
+-- Selecciona el cruce de ambas tablas ordenadas alfabéticamente por el nombre de la ciudad y limitando a 7 resultados.
+
+SELECT * FROM departments INNER JOIN locations on departments.location_id = locations.location_id ORDER BY locations.city  LIMIT(7);
+
+
+
+-- seleccionar los primeros 5 paises de europa
+
+SELECT * FROM countries INNER JOIN regions  on countries.region_id = regions.region_id where regions.region_name='Europe' ORDER BY country_name limit(5);
+
+
+-- contar la cantidad de paises que tiene cada region limitando los resultados a 6
+
+select  regions.region_name, count(distinct(countries.country_name)) FROM countries INNER JOIN regions  on countries.region_id = regions.region_id group by region_name;
+
+-- contar cantidad de ciudades de cada pais
+
+select  countries.country_name , count(distinct(locations.city)) FROM countries INNER JOIN locations  on countries.country_id  = locations.country_id group by country_name;
+
+-- contar la cantidad de ciudades que tiene cada continente
+
+select  countries.country_name , count(distinct(locations.city)) FROM countries INNER JOIN locations  on countries.country_id  = locations.country_id group by country_name;
+
+
+
+-- Necesitas obtener una lista de todos los empleados y, si tienen dependientes, mostrar esos dependientes
+-- junto con sus nombres y relación. Si un empleado no tiene dependientes, aún así quieres mostrar a ese 
+-- empleado en la lista con un mensaje indicando que no tiene dependientes registrados
+
+
+select e.employee_id, e.first_name, e.last_name, d.first_name , d.last_name, d.relationship  from employees e  LEFT JOIN dependents d ON e.employee_id = d.employee_id;
+
+
+
+-- COALESCE se utiliza para mostrar 'No dependents' en caso de que no haya registros de dependientes para un empleado.
+
+SELECT e.employee_id, e.first_name || ' ' || e.last_name AS employee_name, 
+       COALESCE(d.first_name || ' ' || d.last_name, 'No dependents') AS dependent_name,
+       COALESCE(d.relationship, '') AS relationship
+FROM employees e
+LEFT JOIN dependents d ON e.employee_id = d.employee_id;
+
+
+-- Obtener una lista de todos los departamentos y, si hay empleados asignados a 
+-- esos departamentos, mostrar los nombres de esos empleados. Si un departamento no tiene empleados
+-- asignados, aún así queremos mostrar el nombre del departamento con un mensaje indicando que no tiene empleados
+
+SELECT d.department_id, d.department_name, COALESCE(e.first_name || ' ' || e.last_name, 'No employees') AS employee_name
+FROM departments d
+LEFT JOIN employees e ON d.department_id = e.department_id;
+
+
+
+
+
+
+
+-- CON 3 TABLAS
+-- ontener los 3 continentes con mas ciudades donde el codigo postal tenga un numero 9
+
+SELECT regions.region_name, count(distinct(locations.city))
+FROM regions
+INNER JOIN countries ON regions.region_id = countries.region_id
+INNER JOIN locations ON countries.country_id = locations.country_id 
+WHERE locations.postal_code LIKE '%9%' -- Filtrar códigos postales que contengan '9'
+GROUP BY regions.region_name;
+
+
+
+
+
+
+
+
+
+
+
+
+

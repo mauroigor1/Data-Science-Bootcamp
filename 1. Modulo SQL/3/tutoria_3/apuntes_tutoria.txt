@@ -1,0 +1,173 @@
+
+/*TUTORIA 2*/
+create table estudiantes(
+identificador varchar(100),
+nombre varchar(100),
+apellido varchar(100),
+fecha_nacimiento date,
+email VARCHAR(50),
+ciudad varchar(100),
+tiene_mascota varchar(100),
+estilo_musica varchar(100),
+dia int,
+bitcoins  DECIMAL(3,2), 
+bitcoinsAdress VARCHAR(50), /* precisión (cantidad max de dígitos a contener un número) de 3 dígitos y 2 decimales.*/
+primary key (identificador));
+
+
+
+
+insert into estudiantes VALUES ('MI02051997',	'mauricio', 	'igor',	'02/05/1997',	'maurigor0205@gmail.com',	'santiago',	null	,'rock',	2,	0.32,	'1HB8RTKNzFAQZ5LtLFRL3R7rbaLGuJt5Un');		
+insert into estudiantes VALUES ('JS14031995',	'Josefa',	'Sanhueza',	'14/03/1995',	'josefa@gmail.com',	'Santiago',	'si',	'Rock',	14,	0.45,	'15z6eAp7GGforurLkgntSLocJvTafMPThp'	);
+insert into estudiantes VALUES ('WA25021980',	'Willy',	'Ayala',	'25/02/1980',	'willly@gmail.com',	'Santiago',	'si',	'variada',	25,	0.82,	'1NumuVDAuyYGy7b5G19X47dpvYRzRCCc4a');		
+insert into estudiantes VALUES ('AP16021993',	'Aaron', 	'Pincheira',	'16/02/1993',	'aaron@gmail.com',	'Santiago',	'si',	'Hip-Hop',	16,	0.91,	'1NQpZnNzJL2ntadzXj2PbN9nGgEj8zeHVP');		
+insert into estudiantes VALUES ('JT10021989',	'Jennifer', 	'Tobar',	'10/02/1989',	'jennifer@gmail.com',	'Santiago',	'no',	'pop',	10,	1.2,	'1NtsgLEjo3wXNH8ZSfQrF6CY3WRau3ic5Y');	
+insert into estudiantes VALUES ('RA22081996',	'Rosana',	'Arevalo',	'22/08/1996',	'rosana@gmail.com',	'Yurimaguas-Perú',	'si',	'variada',	22,	0.21,	'1HbvwhvxXqSUB5FZGZjjrJzi7Y9SpUy4LW');		
+insert into estudiantes VALUES ('AE27101990',	'Amir',	'El-Maaz',	'27/10/1990',	'amir@gmail.com',	'Maracaibo/Vzla',	'Si',	'Rock',	27,	0.54,	'14uX7dNXuU657AbNz3fh5K17UZYfmETidb');		
+insert into estudiantes VALUES ('SE19061998',	'Sebastián',	'Espinosa',	'19/06/1998',	'sebastian@gmail.com',	'Santiago',	'si',	'variada', 19,	0.89,	'18RfzSJsJJej9mzwFNoRs8hpg5tR8bmKim');		
+insert into estudiantes VALUES ('RA29061994',	'Ricardo',	'Alvarez',	'29/06/1994',	'ricardo@gmail.com',	'santiago',	'no',	'rock',	29,	0.76,	'115A5LUmNVsjREzCHKbpuec2XueBViJG86');		
+insert into estudiantes VALUES ('FM20121999',	'Florencia',	'Muñoz',	'20/12/1999',	'florencia@gmail.com',	'santiago',	'sí',	'rock',	28,	0.99,	'1DVP9ATi1H3QUcp7PQcSsTEJdMab1ZM78Q');		
+insert into estudiantes VALUES ('PR28071991',	'Paula',	'Ramirez', 	'28/07/1991',	'paula@gmail.com',	'santiago',	'Si',	'pop',	28,	1.21,	'1LcB8bsqyqRmJV8BSFdXMxFwnCWmKj3P7B');		
+insert into estudiantes VALUES ('AB03061992',	'Andrea', 	'Burgos', 	'03/06/1992',	'andrea@gmail.com',	'Santiago', 	'si',	'Varios',	null	,0.34,	'1CNXt7BL8Cm5o8zd7jriC2bUoHmyVUENF7');		
+
+
+
+create table bitcoins (
+email VARCHAR(50),
+bitcoinAdress VARCHAR(50),
+monto DECIMAL(3,2)
+);
+insert into bitcoins (email, bitcoinAdress, monto) values
+('jaime@email.com', '1HB8RTKNzFAQZ5LtLFRL3R7rbaLGuJt5Un', 0.32);
+insert into bitcoins (email, bitcoinAdress, monto) values
+('diego@email.com', '15z6eAp7GGforurLkgntSLocJvTafMPThp', 0.08);
+insert into bitcoins (email, bitcoinAdress, monto) values
+('francisca@email.com', '1NumuVDAuyYGy7b5G19X47dpvYRzRCCc4a', 0.04);
+insert into bitcoins (email, bitcoinAdress, monto) values
+('francisca@email.com', '1NQpZnNzJL2ntadzXj2PbN9nGgEj8zeHVP', 0.28);
+insert into bitcoins (email, bitcoinAdress, monto) values
+('jaime@email.com', '1NtsgLEjo3wXNH8ZSfQrF6CY3WRau3ic5Y', 0.53);
+insert into bitcoins (email, bitcoinAdress, monto) values
+('camila@email.com', '1HbvwhvxXqSUB5FZGZjjrJzi7Y9SpUy4LW', 0.65);
+insert into bitcoins (email, bitcoinAdress, monto) values
+('francisca@email.com', '14uX7dNXuU657AbNz3fh5K17UZYfmETidb', 0.38);
+insert into bitcoins (email, bitcoinAdress, monto) values
+('diego@email.com', '18RfzSJsJJej9mzwFNoRs8hpg5tR8bmKim', 0.73);
+insert into bitcoins (email, bitcoinAdress, monto) values
+('camila@email.com', '115A5LUmNVsjREzCHKbpuec2XueBViJG86', 0.19);
+insert into bitcoins (email, bitcoinAdress, monto) values
+('jaime@email.com', '1DVP9ATi1H3QUcp7PQcSsTEJdMab1ZM78Q', 0.93);
+insert into bitcoins (email, bitcoinAdress, monto) values
+('jaime@email.com', '1LcB8bsqyqRmJV8BSFdXMxFwnCWmKj3P7B', 0.83);
+insert into bitcoins (email, bitcoinAdress, monto) values
+('diego@email.com', '1CNXt7BL8Cm5o8zd7jriC2bUoHmyVUENF7', 0.89);
+insert into bitcoins (email, bitcoinAdress, monto) values
+('francisca@email.com', '17o3MhRdGL2e5uBUTCiH5mLbVxQ7JHbuck', 0.82);
+insert into bitcoins (email, bitcoinAdress, monto) values
+('francisca@email.com', '1HtutwGyd573w1a8MB99yU3qZY2uUmvb5V', 0.18);
+insert into bitcoins (email, bitcoinAdress, monto) values
+('camila@email.com', '12ZDMxk73Ej6zJZJ2XwnfmGUr4jBUDHmk9', 0.96);
+insert into bitcoins (email, bitcoinAdress, monto) values
+('jaime@email.com', '13L3hqtQbAzVWbu5zhnMM7v6y7kEM4wW3K', 0.2);
+insert into bitcoins (email, bitcoinAdress, monto) values
+('jaime@email.com', '14obJfGmgqFQeVeqBtpCWc7YE1r138djQt', 0.55);	
+insert into bitcoins (email, bitcoinAdress, monto) values
+('camila@email.com', '1MggBaGyQGDgSUcb63g4Pqb3FTUg3VQawy', 0.21);
+insert into bitcoins (email, bitcoinAdress, monto) values
+('camila@email.com', '1L3281ktysdWfdkfGhq5SrmLkrwvTMdozS', 0.07);
+insert into bitcoins (email, bitcoinAdress, monto) values
+('francisca@email.com', '19CLwEhWsVW2oHUC6Dy66abetBbqB4qTiQ', 0.53);
+insert into bitcoins (email, bitcoinAdress, monto) values
+('jaime@email.com', '1A5oc25Q2Kj36aVT5JN3FBkXaHHrcKAR81', 0.43);
+insert into bitcoins (email, bitcoinAdress, monto) values
+('francisca@email.com', '14qXaaDbKMiTbovAd8772uZ6YDy2bWeGZm', 0.04);
+insert into bitcoins (email, bitcoinAdress, monto) values
+('jaime@email.com', '1M3dMYYngXbfbbjympmZAP57CaVDcx8Ffx', 0.95);
+insert into bitcoins (email, bitcoinAdress, monto) values
+('diego@email.com', '16WDsrHZ375PKBCdYLhhxrGFtguDQtJDSq', 0.61);
+insert into bitcoins (email, bitcoinAdress, monto) values
+('jaime@email.com', '1Jq2d8qk6a5p35Y3eqnrsgzDMdzTTCWUXv', 0.41);
+insert into bitcoins (email, bitcoinAdress, monto) values
+('diego@email.com', '15CBFjbUw46xH2md5eEeFpzaLHRZgATuT7', 0.72);
+insert into bitcoins (email, bitcoinAdress, monto) values
+('jaime@email.com', '1AFXgLKNCwPVTxVuHedTQrQY65yrAmyst5', 0.98);
+insert into bitcoins (email, bitcoinAdress, monto) values
+('camila@email.com', '19iMdr6JK6HgarHsebHmMMVjdxnNbybG6L', 0.8);
+insert into bitcoins (email, bitcoinAdress, monto) values
+('jaime@email.com', '1EL98fxNT1LyS6C8ckFBqocTho9NsEQATS', 0.96);
+insert into bitcoins (email, bitcoinAdress, monto) values
+('camila@email.com', '1B8xZAcBbU3mTfb6bNJvGtLdPanyAK9kN6', 0.79);
+
+
+
+/* contar la cantidad de registro*/
+select  count(*) from bitcoins;
+/* Selecciona el monto de transacción más alto, mas bajo, promedio y suma total*/
+select  MAX(monto), MIN(monto), avg(monto), sum(monto)  from bitcoins;
+/* seleccionar todos los emails distintos*/
+SELECT DISTINCT(email) From bitcoins;
+/* contar la cantidad de emails distintos*/
+SELECT COUNT(DISTINCT(email)) From bitcoins;
+
+
+--Datos actividad 3
+CREATE TABLE ventas (
+categoria VARCHAR(50),
+monto INT
+);
+
+
+INSERT INTO ventas (categoria, monto) VALUES ('Books', 214);
+INSERT INTO ventas (categoria, monto) VALUES ('Games', 293);
+INSERT INTO ventas (categoria, monto) VALUES ('Baby', 241);
+INSERT INTO ventas (categoria, monto) VALUES ('Tools', 719);
+INSERT INTO ventas (categoria, monto) VALUES ('Tools', 385);
+INSERT INTO ventas (categoria, monto) VALUES ('Movies', 882);
+INSERT INTO ventas (categoria, monto) VALUES ('Outdoors', 654);
+INSERT INTO ventas (categoria, monto) VALUES ('Baby', 332);
+INSERT INTO ventas (categoria, monto) VALUES ('Grocery', 332);
+INSERT INTO ventas (categoria, monto) VALUES ('Toys', 952);
+INSERT INTO ventas (categoria, monto) VALUES ('Games', 682);
+INSERT INTO ventas (categoria, monto) VALUES ('Books', 527);
+INSERT INTO ventas (categoria, monto) VALUES ('Kids', 980);
+INSERT INTO ventas (categoria, monto) VALUES ('Grocery', 300);
+
+
+/*agrupar por categoría*/
+SELECT categoria FROM ventas GROUP by categoria;
+
+SELECT categoria, count(categoria) FROM ventas GROUP by categoria;
+
+/*agrupar por categoría  y calcular monto total*/
+SELECT categoria, sum(monto) FROM ventas GROUP by categoria;
+
+
+-- filtrar registros por aquellos que tienen al menos 2 ventas
+SELECT categoria, COUNT(categoria) FROM ventas GROUP BY categoria HAVING
+COUNT(categoria) >= 2;
+
+--  contar solo si  monto total es mayor que cierto 500
+SELECT categoria, COUNT(categoria) FROM ventas GROUP BY categoria HAVING
+SUM(monto) > 500;
+
+
+-- WHERE VS HAVING
+-- NO FUNCIONA--> PORQUE? --> WHERE SE DEBE USAR PARA UNA CONDICION SOBRE CUALQUIER COLUMNA DE UNA TABLA
+-- HAVING SE USA CUANDO LA CONDICION ES SOBRE UN FUNCION DE AGREGADO PERO NO PERMITE ALIAS
+SELECT categoria, COUNT(categoria) FROM ventas GROUP BY categoria where
+SUM(monto) > 500;
+
+
+
+-- SUBCONSULTAS !
+
+-- 1. subconsulta de solo 1 fila
+SELECT * FROM ventas WHERE monto > (SELECT AVG(monto) FROM ventas);
+
+-- 2. subconsulta de mas de 1 fila
+
+
+SELECT nombre, apellido FROM estudiantes where nombre IN (SELECT nombre FROM estudiantes WHERE 
+	fecha_nacimiento  BETWEEN '01-01-1993'
+AND '01-01-1998');
+
